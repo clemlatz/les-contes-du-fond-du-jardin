@@ -1,0 +1,138 @@
+---
+import Footer from "./Footer.astro";
+import { Icon } from 'astro-icon/components'
+---
+
+<style>
+  .AudioPlayer__container {
+    align-items: center;
+    background: black;
+    border-radius: 12px;
+    bottom: 16px;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    left: 16px;
+    right: 16px;
+    position: fixed;
+    padding: 1em;
+    opacity: 0.9;
+    translate: 0 calc(100% + 16px);
+    transition: translate 0.250s ease-in-out;
+  }
+
+  .AudioPlayer__title,
+  .AudioPlayer__time {
+    width: 40%;
+  }
+
+  .AudioPlayer__title {
+    color: white;
+  }
+
+  .AudioPlayer__time {
+    text-align: right;
+  }
+
+  .AudioPlayer__progress {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    height: 12px;
+    margin-top: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .AudioPlayer__progress  {
+    cursor: pointer;
+  }
+
+  .AudioPlayer__progress-bar {
+    background: white;
+    height: 100%;
+    opacity: 0.7;
+    transition: width 0.1s ease-in-out;
+    width: 0;
+  }
+
+  .button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+<div id="audio-player-container" class="AudioPlayer__container" transition:persist transition:name="audio">
+  <audio id="AudioPlayer"/>
+
+  <a href="#" id="audio-title" class="AudioPlayer__title"></a>
+  <div>
+    <img alt="Play" width="48" height="48" role="button" id="play-button"
+      src="/icons/play.svg"
+      class="AudioPlayer__play-button button"
+    />
+  </div>
+  <div id="audio-time" class="AudioPlayer__time"></div>
+  <div id="audio-progress" class="AudioPlayer__progress">
+    <div id="audio-progress-bar" class="AudioPlayer__progress-bar"> </div>
+  </div>
+</div>
+
+<script>
+  const audioPlayerContainer = document.getElementById("audio-player-container") as HTMLDivElement;
+  const audioTitle = document.getElementById("audio-title") as HTMLAnchorElement;
+  const audioPlayer = document.getElementById("AudioPlayer") as HTMLAudioElement;
+  const playButton = document.getElementById("play-button") as HTMLImageElement;
+  document.addEventListener("audio:play", (event) => {
+    if (audioPlayer) {
+      const {title, audioUrl, href} = (event as CustomEvent).detail;
+      audioTitle.href = href;
+      audioTitle.textContent = title;
+      audioPlayer.src = audioUrl;
+      audioPlayer.play();
+    }
+  });
+
+  audioPlayer.addEventListener("play", () => {
+    playButton.src = "/icons/pause.svg";
+    playButton.alt = "Pause";
+    audioPlayerContainer.style.translate = "0 0";
+  });
+
+  audioPlayer.addEventListener("pause", () => {
+    playButton.src = "/icons/play.svg";
+    playButton.alt = "Lecture";
+  });
+
+  playButton.addEventListener("click",
+    () => audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause()
+  );
+
+  const progressBar = document.getElementById("audio-progress-bar") as HTMLProgressElement;
+  audioPlayer.addEventListener("timeupdate", () => {
+    const { currentTime, duration} = audioPlayer;
+    const percent = (currentTime / duration) * 100;
+    progressBar.style.width = `${percent}%`;
+    const timeDisplay = document.querySelector(".AudioPlayer__time") as HTMLDivElement;
+    const currentMinutes = Math.floor(currentTime / 60);
+    const currentSeconds = Math.floor(currentTime % 60);
+    const durationMinutes = Math.floor(duration / 60);
+    const durationSeconds = Math.floor(duration % 60);
+    const formattedDuration = `${durationMinutes}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`;
+    const formattedCurrentTime = `${currentMinutes}:${currentSeconds < 10 ? '0' + currentSeconds : currentSeconds}`;
+    timeDisplay.textContent = `${formattedCurrentTime} / ${formattedDuration}`;
+  });
+
+  const progress = document.getElementById("audio-progress") as HTMLProgressElement;
+  progress.addEventListener("click", (event) => {
+    const rect = progress.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+    const percent = offsetX / rect.width;
+    audioPlayer.currentTime = percent * audioPlayer.duration;
+  });
+</script>
