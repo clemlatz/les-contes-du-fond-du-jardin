@@ -14,8 +14,9 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
-const {Content} = await render(post);
-const {title, description, pubDate, updatedDate, heroImage} = post.data;
+const { Content } = await render(post);
+const { title, description, pubDate, updatedDate, heroImage, audioUrl } =
+  post.data;
 
 const episodeTitle = title;
 ---
@@ -66,17 +67,21 @@ const episodeTitle = title;
     </article>
 </Layout>
 
-<script define:vars={{episodeTitle, episodeUrl: Astro.url}}>
+<script define:vars={{ episodeTitle, episodeUrl: Astro.url, audioUrl }}>
   const playEpisodeButton = document.getElementById('play-episode');
+  console.log(audioUrl);
+
   if (playEpisodeButton) {
     playEpisodeButton.addEventListener('click', () => {
-      document.dispatchEvent(new CustomEvent('audio:play', {
-        detail: {
-          title: episodeTitle,
-          href: episodeUrl,
-          audioUrl: 'https://dts.podtrac.com/redirect.mp3/https://sons-audioblogs.arte.tv/audioblogs/v2/sons/258125/258445/podcast_258445_dXf6l.mp3',
-        },
-      }));
+      document.dispatchEvent(
+        new CustomEvent('audio:play', {
+          detail: {
+            title: episodeTitle,
+            href: episodeUrl,
+            audioUrl,
+          },
+        }),
+      );
     });
   }
 </script>
