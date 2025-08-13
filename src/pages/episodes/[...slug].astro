@@ -18,8 +18,24 @@ const {Content} = await render(post);
 const {title, description, pubDate, updatedDate, heroImage} = post.data;
 
 const episodeTitle = title;
-
 ---
+
+<style>
+  .PlayEpisodeButton {
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 32px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 16px;
+    gap: 8px;
+    margin: 24px 0 32px;
+    padding: 12px 16px 12px 12px;
+  }
+</style>
+
 <Layout {...post.data}>
     <article>
         <div class="hero-image">
@@ -40,15 +56,17 @@ const episodeTitle = title;
                     )
                   }
                 </div>
-                <hr/>
             </div>
-            <button id="play-episode" class="AudioPlayer">Play Episode</button>
+            <button id="play-episode" class="PlayEpisodeButton">
+                <img src="/icons/play.svg" alt="Play icon" width="24" height="24"/>
+                Écouter
+            </button>
             <Content/>
         </div>
     </article>
 </Layout>
 
-<script define:vars={{ episodeTitle, episodeUrl: Astro.url }}>
+<script define:vars={{episodeTitle, episodeUrl: Astro.url}}>
   const playEpisodeButton = document.getElementById('play-episode');
   if (playEpisodeButton) {
     playEpisodeButton.addEventListener('click', () => {
