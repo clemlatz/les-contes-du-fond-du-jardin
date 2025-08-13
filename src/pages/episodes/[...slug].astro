@@ -22,6 +22,37 @@ const episodeTitle = title;
 ---
 
 <style>
+  .hero-image {
+    width: 100%;
+  }
+  .hero-image img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+  }
+  .prose {
+    width: 720px;
+    max-width: calc(100% - 2em);
+    margin: auto;
+    padding: 1em;
+    color: rgb(var(--gray-dark));
+  }
+  .title {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+  }
+  .title h1 {
+    margin: 0 0 0.5em 0;
+  }
+  .date {
+    color: rgb(var(--gray));
+  }
+  .last-updated-on {
+    font-style: italic;
+  }
+
   .PlayEpisodeButton {
     align-items: center;
     background-color: rgb(0, 0, 0, 0.8);
@@ -32,7 +63,7 @@ const episodeTitle = title;
     display: flex;
     font-size: 16px;
     gap: 8px;
-    margin: 24px 0 32px;
+    margin: 24px 0 64px;
     padding: 12px 16px 12px 12px;
   }
 </style>
