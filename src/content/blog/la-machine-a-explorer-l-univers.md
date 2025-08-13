@@ -3,6 +3,7 @@ title: La Machine à explorer l'univers
 description: « Écoute-moi bien, je vais te faire visiter des étoiles… » Ma fille Justine fabrique une machine à explorer l'univers. Je l'ai interviewée pour en savoir plus.
 pubDate: 2025-08-13
 audioUrl: https://dts.podtrac.com/redirect.mp3/https://sons-audioblogs.arte.tv/audioblogs/v2/sons/258125/258446/podcast_258446_kDy78.mp3
+durationInMinutes: 7
 ---
 
 « _Écoute-moi bien, je vais te faire visiter des étoiles…_ »

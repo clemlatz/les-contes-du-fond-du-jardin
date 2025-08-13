@@ -3,6 +3,7 @@ title: La Licorne des mers
 description: « Il était une fois une licorne qui avait des ailes. » Une histoire imaginée et racontée par Justine.
 pubDate: 2025-07-30
 audioUrl: https://dts.podtrac.com/redirect.mp3/https://sons-audioblogs.arte.tv/audioblogs/v2/sons/258125/258445/podcast_258445_dXf6l.mp3
+durationInMinutes: 3
 ---
 
 #### Transcription
