@@ -5,7 +5,7 @@ import { ClientRouter } from 'astro:transitions';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import AudioPlayer from "../components/AudioPlayer.astro";
+import AudioPlayer from '../components/AudioPlayer.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -26,12 +26,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     <ClientRouter />
   </head>
 
-	<body>
-		<Header />
-		<main>
+  <body>
+    <Header />
+    <main>
       <slot />
-		</main>
-		<Footer />
-		<AudioPlayer />
-	</body>
+    </main>
+    <Footer />
+    <AudioPlayer />
+  </body>
 </html>

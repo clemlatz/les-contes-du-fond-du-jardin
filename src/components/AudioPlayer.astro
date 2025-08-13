@@ -1,6 +1,6 @@
 ---
-import Footer from "./Footer.astro";
-import { Icon } from 'astro-icon/components'
+import Footer from './Footer.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <style>
@@ -19,7 +19,7 @@ import { Icon } from 'astro-icon/components'
     padding: 1em;
     opacity: 0.9;
     translate: 0 calc(100% + 16px);
-    transition: translate 0.250s ease-in-out;
+    transition: translate 0.25s ease-in-out;
   }
 
   .AudioPlayer__title,
@@ -45,7 +45,7 @@ import { Icon } from 'astro-icon/components'
     width: 100%;
   }
 
-  .AudioPlayer__progress  {
+  .AudioPlayer__progress {
     cursor: pointer;
   }
 
@@ -67,30 +67,46 @@ import { Icon } from 'astro-icon/components'
   }
 </style>
 
-<div id="audio-player-container" class="AudioPlayer__container" transition:persist transition:name="audio">
-  <audio id="AudioPlayer"/>
+<div
+  id="audio-player-container"
+  class="AudioPlayer__container"
+  transition:persist
+  transition:name="audio"
+>
+  <audio id="AudioPlayer"></audio>
 
   <a href="#" id="audio-title" class="AudioPlayer__title"></a>
   <div>
-    <img alt="Play" width="48" height="48" role="button" id="play-button"
+    <img
+      alt="Play"
+      width="48"
+      height="48"
+      role="button"
+      id="play-button"
       src="/icons/play.svg"
       class="AudioPlayer__play-button button"
     />
   </div>
   <div id="audio-time" class="AudioPlayer__time"></div>
   <div id="audio-progress" class="AudioPlayer__progress">
-    <div id="audio-progress-bar" class="AudioPlayer__progress-bar"> </div>
+    <div id="audio-progress-bar" class="AudioPlayer__progress-bar"></div>
   </div>
 </div>
 
 <script>
-  const audioPlayerContainer = document.getElementById("audio-player-container") as HTMLDivElement;
-  const audioTitle = document.getElementById("audio-title") as HTMLAnchorElement;
-  const audioPlayer = document.getElementById("AudioPlayer") as HTMLAudioElement;
-  const playButton = document.getElementById("play-button") as HTMLImageElement;
-  document.addEventListener("audio:play", (event) => {
+  const audioPlayerContainer = document.getElementById(
+    'audio-player-container',
+  ) as HTMLDivElement;
+  const audioTitle = document.getElementById(
+    'audio-title',
+  ) as HTMLAnchorElement;
+  const audioPlayer = document.getElementById(
+    'AudioPlayer',
+  ) as HTMLAudioElement;
+  const playButton = document.getElementById('play-button') as HTMLImageElement;
+  document.addEventListener('audio:play', (event) => {
     if (audioPlayer) {
-      const {title, audioUrl, href} = (event as CustomEvent).detail;
+      const { title, audioUrl, href } = (event as CustomEvent).detail;
       audioTitle.href = href;
       audioTitle.textContent = title;
       audioPlayer.src = audioUrl;
@@ -98,27 +114,31 @@ import { Icon } from 'astro-icon/components'
     }
   });
 
-  audioPlayer.addEventListener("play", () => {
-    playButton.src = "/icons/pause.svg";
-    playButton.alt = "Pause";
-    audioPlayerContainer.style.translate = "0 0";
+  audioPlayer.addEventListener('play', () => {
+    playButton.src = '/icons/pause.svg';
+    playButton.alt = 'Pause';
+    audioPlayerContainer.style.translate = '0 0';
   });
 
-  audioPlayer.addEventListener("pause", () => {
-    playButton.src = "/icons/play.svg";
-    playButton.alt = "Lecture";
+  audioPlayer.addEventListener('pause', () => {
+    playButton.src = '/icons/play.svg';
+    playButton.alt = 'Lecture';
   });
 
-  playButton.addEventListener("click",
-    () => audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause()
+  playButton.addEventListener('click', () =>
+    audioPlayer.paused ? audioPlayer.play() : audioPlayer.pause(),
   );
 
-  const progressBar = document.getElementById("audio-progress-bar") as HTMLProgressElement;
-  audioPlayer.addEventListener("timeupdate", () => {
-    const { currentTime, duration} = audioPlayer;
+  const progressBar = document.getElementById(
+    'audio-progress-bar',
+  ) as HTMLProgressElement;
+  audioPlayer.addEventListener('timeupdate', () => {
+    const { currentTime, duration } = audioPlayer;
     const percent = (currentTime / duration) * 100;
     progressBar.style.width = `${percent}%`;
-    const timeDisplay = document.querySelector(".AudioPlayer__time") as HTMLDivElement;
+    const timeDisplay = document.querySelector(
+      '.AudioPlayer__time',
+    ) as HTMLDivElement;
     const currentMinutes = Math.floor(currentTime / 60);
     const currentSeconds = Math.floor(currentTime % 60);
     const durationMinutes = Math.floor(duration / 60);
@@ -128,8 +148,10 @@ import { Icon } from 'astro-icon/components'
     timeDisplay.textContent = `${formattedCurrentTime} / ${formattedDuration}`;
   });
 
-  const progress = document.getElementById("audio-progress") as HTMLProgressElement;
-  progress.addEventListener("click", (event) => {
+  const progress = document.getElementById(
+    'audio-progress',
+  ) as HTMLProgressElement;
+  progress.addEventListener('click', (event) => {
     const rect = progress.getBoundingClientRect();
     const offsetX = event.clientX - rect.left;
     const percent = offsetX / rect.width;
