@@ -6,23 +6,22 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { formatDuration } from '../../utils/formationDuration';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post,
+  const episodes = await getCollection('episode');
+  return episodes.map((episode) => ({
+    params: { slug: episode.id },
+    props: episode,
   }));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<'episode'>;
 
-const post = Astro.props;
-const { Content } = await render(post);
-const { title, description, pubDate, coverImage, audioUrl } =
-  post.data;
+const episode = Astro.props;
+const { Content } = await render(episode);
+const { title, description, pubDate, coverImage, audioUrl } = episode.data;
 
 const episodeTitle = title;
 
-const sizeInMB = Math.round(post.data.sizeInBytes / (1024 * 1024));
-const durationInMinutes = formatDuration(post.data.durationInSeconds);
+const sizeInMB = Math.round(episode.data.sizeInBytes / (1024 * 1024));
+const durationInMinutes = formatDuration(episode.data.durationInSeconds);
 ---
 
 <style>
@@ -84,7 +83,7 @@ const durationInMinutes = formatDuration(post.data.durationInSeconds);
   }
 </style>
 
-<Layout {...post.data}>
+<Layout {...episode.data}>
   <article>
     <div class="prose">
       <div class="title">
@@ -114,7 +113,7 @@ const durationInMinutes = formatDuration(post.data.durationInSeconds);
         <a
           href={audioUrl}
           class="Button Button--download"
-          download={`${post.id}.mp3`}
+          download={`${episode.id}.mp3`}
         >
           <img
             src="/icons/play.svg"

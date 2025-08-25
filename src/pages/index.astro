@@ -5,7 +5,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import Layout from '../layouts/Layout.astro';
 import { formatDuration } from '../utils/formationDuration';
 
-const posts = (await getCollection('blog')).sort(
+const episodes = (await getCollection('episode')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -90,13 +90,13 @@ const posts = (await getCollection('blog')).sort(
   <section>
     <ul>
       {
-        posts.map((post) => (
+        episodes.map((episode) => (
           <li>
-            <a href={`/episode/${post.id}/`}>
-              <h4 class="title">{post.data.title}</h4>
+            <a href={`/episode/${episode.id}/`}>
+              <h4 class="title">{episode.data.title}</h4>
               <p class="date">
-                <FormattedDate date={post.data.pubDate} />
-                  · {formatDuration(post.data.durationInSeconds)} min
+                <FormattedDate date={episode.data.pubDate} />·{' '}
+                {formatDuration(episode.data.durationInSeconds)} min
               </p>
             </a>
           </li>
