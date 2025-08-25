@@ -19,6 +19,8 @@ const { title, description, pubDate, updatedDate, heroImage, audioUrl } =
   post.data;
 
 const episodeTitle = title;
+
+const sizeInMB = Math.round(post.data.sizeInBytes / (1024 * 1024));
 ---
 
 <style>
@@ -88,19 +90,34 @@ const episodeTitle = title;
         <h1>{title}</h1>
         <div class="date">
           <FormattedDate date={pubDate} />
-          · {post.data.durationInMinutes} min
         </div>
       </div>
-        <div class="buttons">
-          <button id="play-episode" class="Button">
-            <img src="/icons/play.svg" class="Button__icon" alt="Play icon" width="24" height="24" />
-            Écouter
-          </button>
-          <a href={audioUrl} class="Button Button--download" download={`${post.id}.mp3`}>
-            <img src="/icons/play.svg" class="Button__icon" alt="Play icon" width="24" height="24" />
-            Télécharger
-          </a>
-        </div>
+      <div class="buttons">
+        <button id="play-episode" class="Button">
+          <img
+            src="/icons/play.svg"
+            class="Button__icon"
+            alt="Play icon"
+            width="24"
+            height="24"
+          />
+          Écouter ({post.data.durationInMinutes} min)
+        </button>
+        <a
+          href={audioUrl}
+          class="Button Button--download"
+          download={`${post.id}.mp3`}
+        >
+          <img
+            src="/icons/play.svg"
+            class="Button__icon"
+            alt="Play icon"
+            width="24"
+            height="24"
+          />
+          Télécharger ({sizeInMB} Mo)
+        </a>
+      </div>
       <Content />
     </div>
   </article>
