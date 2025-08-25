@@ -126,7 +126,6 @@ const durationInMinutes = Math.round(post.data.durationInSeconds / 60);
 
 <script define:vars={{ episodeTitle, episodeUrl: Astro.url, audioUrl }}>
   const playEpisodeButton = document.getElementById('play-episode');
-  console.log(audioUrl);
 
   if (playEpisodeButton) {
     playEpisodeButton.addEventListener('click', () => {
