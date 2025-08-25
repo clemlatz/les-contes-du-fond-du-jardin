@@ -22,13 +22,13 @@ let episodes = await getCollection('blog');
 episodes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const lastBuildDate = dayjs().format('ddd, DD MMM YYYY hh:mm:ss ZZ');
-const cover = isFullUrl(podcastConfig.cover)
+const cover = _isFullUrl(podcastConfig.cover)
   ? podcastConfig.cover
   : podcastConfig.link + podcastConfig.cover;
 
 // noinspection JSUnusedGlobalSymbols
 export async function GET() {
-  let podcast = {
+  const podcast = {
     rss: {
       $: {
         version: '2.0',
@@ -88,42 +88,11 @@ export async function GET() {
               },
             },
           ],
+          item: episodes.map(_buildRssItem),
         },
       ],
     },
   };
-
-  podcast.rss.channel[0].item = episodes.map((episode) => {
-    let item = {
-      title: episode.data.title,
-      description: marked.parse(episode.body),
-      pubDate: dayjs(episode.data.pubDate).format(
-        'ddd, DD MMM YYYY hh:mm:ss ZZ',
-      ),
-      link: `${podcastConfig.link}/episode/${episode.id}/`,
-      guid: `${podcastConfig.link}/episode/${episode.id}/`,
-      'itunes:explicit': false,
-      enclosure: {
-        $: {
-          url: isFullUrl(episode.data.audioUrl)
-            ? episode.data.audioUrl
-            : podcastConfig.link + episode.data.audioUrl,
-          length: episode.data.sizeInBytes,
-          type: 'audio/mpeg',
-        },
-      },
-      'itunes:duration': episode.data.durationInSeconds,
-    };
-    const cover_url = episode.data.cover
-      ? episode.data.cover
-      : podcastConfig.cover;
-    item['itunes:image'] = {
-      $: {
-        href: isFullUrl(cover_url) ? cover_url : podcastConfig.link + cover_url,
-      },
-    };
-    return item;
-  });
 
   let builder = new xml2js.Builder({ cdata: true });
   let xml = builder.buildObject(podcast);
@@ -133,10 +102,40 @@ export async function GET() {
   });
 }
 
-function isFullUrl(urlString) {
+function _isFullUrl(urlString) {
   try {
     return Boolean(new URL(urlString));
   } catch (e) {
     return false;
   }
+}
+
+function _buildRssItem(episode) {
+  let item = {
+    title: episode.data.title,
+    description: marked.parse(episode.body),
+    pubDate: dayjs(episode.data.pubDate).format('ddd, DD MMM YYYY hh:mm:ss ZZ'),
+    link: `${podcastConfig.link}/episode/${episode.id}/`,
+    guid: `${podcastConfig.link}/episode/${episode.id}/`,
+    'itunes:explicit': false,
+    enclosure: {
+      $: {
+        url: _isFullUrl(episode.data.audioUrl)
+          ? episode.data.audioUrl
+          : podcastConfig.link + episode.data.audioUrl,
+        length: episode.data.sizeInBytes,
+        type: 'audio/mpeg',
+      },
+    },
+    'itunes:duration': episode.data.durationInSeconds,
+  };
+  const cover_url = episode.data.cover
+    ? episode.data.cover
+    : podcastConfig.cover;
+  item['itunes:image'] = {
+    $: {
+      href: _isFullUrl(cover_url) ? cover_url : podcastConfig.link + cover_url,
+    },
+  };
+  return item;
 }
