@@ -5,6 +5,7 @@ pubDate: 2025-08-13
 audioUrl: https://dts.podtrac.com/redirect.mp3/https://sons-audioblogs.arte.tv/audioblogs/v2/sons/258125/258446/podcast_258446_kDy78.mp3
 durationInSeconds: 410 # 6 minutes et 50 secondes
 sizeInBytes: 16402807
+coverImage: ../../assets/episodes/la-machine-a-explorer-l-univers.jpg
 ---
 
 « _Écoute-moi bien, je vais te faire visiter des étoiles…_ »

@@ -5,6 +5,7 @@ pubDate: 2025-07-30
 audioUrl: https://dts.podtrac.com/redirect.mp3/https://sons-audioblogs.arte.tv/audioblogs/v2/sons/258125/258445/podcast_258445_dXf6l.mp3
 durationInSeconds: 173 # 2 minutes et 53 secondes
 sizeInBytes: 6961109
+coverImage: ../../assets/episodes/la-licorne-des-mers.jpg
 ---
 
 #### Transcription
