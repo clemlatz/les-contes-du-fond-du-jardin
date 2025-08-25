@@ -21,6 +21,7 @@ const { title, description, pubDate, updatedDate, heroImage, audioUrl } =
 const episodeTitle = title;
 
 const sizeInMB = Math.round(post.data.sizeInBytes / (1024 * 1024));
+const durationInMinutes = Math.round(post.data.durationInSeconds / 60);
 ---
 
 <style>
@@ -101,7 +102,7 @@ const sizeInMB = Math.round(post.data.sizeInBytes / (1024 * 1024));
             width="24"
             height="24"
           />
-          Écouter ({post.data.durationInMinutes} min)
+          Écouter ({durationInMinutes} min)
         </button>
         <a
           href={audioUrl}
