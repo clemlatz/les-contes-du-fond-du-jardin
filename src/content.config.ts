@@ -15,6 +15,7 @@ const blog = defineCollection({
       heroImage: image().optional(),
       audioUrl: z.string().optional(),
       durationInMinutes: z.number().optional(),
+      sizeInBytes: z.number(),
     }),
 });
 
