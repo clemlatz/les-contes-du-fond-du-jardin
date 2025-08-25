@@ -16,15 +16,13 @@ const podcastConfig = {
   category: 'Kids & Family',
   subcategory: 'Stories for Kids',
   language: 'fr',
+  cover: 'https://les-contes-du-fond-du-jardin.fr/cover.png',
 };
 
 let episodes = await getCollection('blog');
 episodes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const lastBuildDate = dayjs().format('ddd, DD MMM YYYY hh:mm:ss ZZ');
-const cover = _isFullUrl(podcastConfig.cover)
-  ? podcastConfig.cover
-  : podcastConfig.link + podcastConfig.cover;
 
 // noinspection JSUnusedGlobalSymbols
 export async function GET() {
@@ -49,7 +47,7 @@ export async function GET() {
           lastBuildDate: lastBuildDate,
           language: podcastConfig.language,
           'itunes:author': podcastConfig.author,
-          'itunes:image': { $: { href: cover } },
+          'itunes:image': { $: { href: podcastConfig.cover } },
           'itunes:summary': podcastConfig.description,
           'itunes:type': 'episodic',
           'itunes:explicit': podcastConfig.explicit,
@@ -70,7 +68,7 @@ export async function GET() {
           image: {
             link: podcastConfig.link,
             title: podcastConfig.name,
-            url: cover,
+            url: podcastConfig.cover,
           },
           'atom:link': [
             {
