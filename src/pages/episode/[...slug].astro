@@ -26,6 +26,8 @@ const durationInMinutes = Math.round(post.data.durationInSeconds / 60);
 
 <style>
   .cover-image {
+    margin: 32px auto;
+    max-width: 500px;
     width: 100%;
   }
   .cover-image img {
@@ -83,15 +85,19 @@ const durationInMinutes = Math.round(post.data.durationInSeconds / 60);
 
 <Layout {...post.data}>
   <article>
-    <div class="cover-image">
-      {coverImage && <Image width={1400} height={1400} src={coverImage} alt="" />}
-    </div>
     <div class="prose">
       <div class="title">
         <h1>{title}</h1>
         <div class="date">
           <FormattedDate date={pubDate} />
         </div>
+      </div>
+      <div class="cover-image">
+        {
+          coverImage && (
+            <Image width={1400} height={1400} src={coverImage} alt="" />
+          )
+        }
       </div>
       <div class="buttons">
         <button id="play-episode" class="Button">
