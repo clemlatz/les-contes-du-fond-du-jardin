@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import FormattedDate from '../../components/FormattedDate.astro';
+import { formatDuration } from '../../utils/formationDuration';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -21,7 +22,7 @@ const { title, description, pubDate, coverImage, audioUrl } =
 const episodeTitle = title;
 
 const sizeInMB = Math.round(post.data.sizeInBytes / (1024 * 1024));
-const durationInMinutes = Math.round(post.data.durationInSeconds / 60);
+const durationInMinutes = formatDuration(post.data.durationInSeconds);
 ---
 
 <style>
