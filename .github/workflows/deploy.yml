@@ -1,0 +1,17 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    uses: clemlatz/build-and-deploy/.github/workflows/workflow.yml@main
+    with:
+      build-output-directory: dist
+      remote-target-path: ~/les-contes-du-fond-du-jardin.fr
+    secrets:
+      ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      ssh-remote-host: ${{ secrets.SSH_HOST }}
+      ssh-remote-user: ${{ secrets.SSH_USER }}
