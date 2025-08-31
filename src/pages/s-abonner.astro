@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="S'abonner"
+  description="Abonnez-vous au podcast pour ne rater aucun épisode !"
+>
+  <div>
+    <h3>S'abonner au podcast</h3>
+
+    <p>Abonnez-vous pour ne rater aucun épisode !</p>
+
+    <h4>Par courriel</h4>
+    <form
+      method="post"
+      action="https://mailing.biblys.net/subscription/form"
+      class="listmonk-form"
+    >
+      <input type="hidden" name="nonce" />
+
+      <p>
+        <label for="email">Votre adresse :</label>
+        <input type="email" name="email" required />
+        <input type="hidden" name="name" />
+
+        <input
+          id="2fc4f"
+          type="hidden"
+          name="l"
+          checked
+          value="2fc4f69c-5438-4037-959e-6dbdbf9d681f"
+        />
+
+        <input type="submit" value="S'abonner" />
+      </p>
+    </form>
+
+    <h4>Avec le flux RSS</h4>
+    <p>
+      <a href="/rss.xml">https://les-contes-du-fond-du-jardin.fr/rss.xml</a>
+    </p>
+
+    <h4>Dans votre application de podcasts</h4>
+
+    (Bientôt…)
+  </div>
+</Layout>
