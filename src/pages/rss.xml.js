@@ -19,7 +19,7 @@ const podcastConfig = {
   cover: 'https://les-contes-du-fond-du-jardin.fr/cover.png',
 };
 
-let episodes = await getCollection('episodes');
+let episodes = await getCollection('episode');
 episodes.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const lastBuildDate = dayjs().format('ddd, DD MMM YYYY hh:mm:ss ZZ');
