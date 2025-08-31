@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { marked } from 'marked';
 
 import { getCollection } from 'astro:content';
+import { getAudioUrlWithPodtracPrefix } from '../utils/getAudioUrlWithPodtracPrefix.js';
 
 const podcastConfig = {
   name: 'Les Contes du fond du jardin',
@@ -118,9 +119,7 @@ function _buildRssItem(episode) {
     'itunes:explicit': false,
     enclosure: {
       $: {
-        url: _isFullUrl(episode.data.audioUrl)
-          ? episode.data.audioUrl
-          : podcastConfig.link + episode.data.audioUrl,
+        url: getAudioUrlWithPodtracPrefix(episode.data.audioUrl),
         length: episode.data.sizeInBytes,
         type: 'audio/mpeg',
       },

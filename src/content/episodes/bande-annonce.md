@@ -2,7 +2,7 @@
 title: 'Bande-annonce : Les Contes du fond du jardin'
 description: Découvrez un nouveau podcast d'histoires pour enfants.
 pubDate: 2025-09-03
-audioUrl: http://mp3.les-contes-du-fond-du-jardin.fr/bande-annonce.mp3
+audioUrl: https://mp3.les-contes-du-fond-du-jardin.fr/bande-annonce.mp3
 durationInSeconds: 201 # 3 minutes et 21 secondes
 sizeInBytes: 8061386
 coverImage: ../../assets/episodes/bande-annonce.png
