@@ -27,7 +27,7 @@ const durationInMinutes = formatDuration(episode.data.durationInSeconds);
 <style>
   .cover-image {
     margin: 32px auto;
-    max-width: 500px;
+    max-width: 300px;
     width: 100%;
   }
   .cover-image img {
@@ -36,6 +36,13 @@ const durationInMinutes = formatDuration(episode.data.durationInSeconds);
     border-radius: 12px;
     box-shadow: var(--box-shadow);
   }
+
+  @media (min-width: 768px) {
+    .cover-image {
+      max-width: 500px;
+    }
+  }
+
   .prose {
     width: 720px;
     max-width: calc(100% - 2em);
@@ -61,6 +68,8 @@ const durationInMinutes = formatDuration(episode.data.durationInSeconds);
   .buttons {
     display: flex;
     gap: 8px;
+    margin: 24px 0 64px;
+    flex-wrap: wrap;
   }
 
   .Button {
@@ -73,13 +82,20 @@ const durationInMinutes = formatDuration(episode.data.durationInSeconds);
     display: inline-flex;
     font-size: 16px;
     gap: 8px;
-    margin: 24px 0 64px;
     padding: 12px 16px 12px 12px;
     text-decoration: none;
+    justify-content: center;
+    width: 100%;
   }
 
   .Button--download .Button__icon {
     rotate: 90deg;
+  }
+
+  @media (min-width: 480px) {
+    .Button {
+      width: auto;
+    }
   }
 </style>
 
