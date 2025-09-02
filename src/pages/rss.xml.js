@@ -12,6 +12,7 @@ const podcastConfig = {
   description: 'Petites histoires pour oreilles grandes ouvertes',
   link: 'https://les-contes-du-fond-du-jardin.fr',
   explicit: false,
+  author: 'Clément Latzarus',
   owner: 'Clément Latzarus',
   email: 'contact@les-contes-du-fond-du-jardin.fr',
   category: 'Kids & Family',
