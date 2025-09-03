@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import SocialLinks from './SocialLinks.astro';
 ---
 
 <header>
@@ -11,11 +12,7 @@ import HeaderLink from './HeaderLink.astro';
       <HeaderLink href="/s-abonner">S'abonner</HeaderLink>
       <HeaderLink href="/a-propos">À propos</HeaderLink>
     </div>
-    <div class="social-links">
-      <a href="/rss.xml" aria-label="S'abonner via RSS">
-        <img src="/icons/rss.svg" alt="" role="presentation" width="48" />
-      </a>
-    </div>
+    <SocialLinks />
   </nav>
 </header>
 
@@ -48,7 +45,7 @@ import HeaderLink from './HeaderLink.astro';
   }
 
   nav a {
-    padding: 1em 0.5em;
+    padding: 0;
     color: var(--black);
     border-bottom: 4px solid transparent;
     text-decoration: none;
@@ -59,14 +56,8 @@ import HeaderLink from './HeaderLink.astro';
     border-bottom-color: var(--accent);
   }
 
-  .social-links,
-  .social-links a {
+  .internal-links {
     display: flex;
-  }
-
-  @media (max-width: 720px) {
-    .social-links {
-      display: none;
-    }
+    gap: 1em;
   }
 </style>

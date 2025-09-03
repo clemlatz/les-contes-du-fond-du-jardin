@@ -1,12 +1,11 @@
 ---
+import SocialLinks from './SocialLinks.astro';
 const today = new Date();
 ---
 
 <footer>
   <div class="social-links">
-    <a href="/rss.xml" aria-label="S'abonner via RSS">
-      <img src="/icons/rss.svg" alt="" role="presentation" width="48" />
-    </a>
+    <SocialLinks />
   </div>
   &copy; {today.getFullYear()}
   <a href="https://clemlatz.dev">Clément Latzarus</a>
@@ -17,12 +16,6 @@ const today = new Date();
     background: linear-gradient(var(--gray-gradient)) no-repeat;
     color: rgb(var(--gray));
     text-align: center;
-  }
-  .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1em;
-    margin-top: 1em;
   }
   .social-links a {
     text-decoration: none;
