@@ -8,7 +8,7 @@ sizeInBytes: 7771950
 coverImage: ../../assets/episodes/bande-annonce.png
 ---
 
-Découvrez un nouveau podcast d'histoires pour enfants, **Les Contes du fond du jardin**.
+Découvrez un nouveau podcast d'histoires pour petits et grands, **Les Contes du fond du jardin**.
 
 #### Crédits
 
