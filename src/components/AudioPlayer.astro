@@ -94,6 +94,7 @@ import { Icon } from 'astro-icon/components';
 </div>
 
 <script>
+  /** global umami */
   const audioPlayerContainer = document.getElementById(
     'audio-player-container',
   ) as HTMLDivElement;
@@ -118,11 +119,25 @@ import { Icon } from 'astro-icon/components';
     playButton.src = '/icons/pause.svg';
     playButton.alt = 'Pause';
     audioPlayerContainer.style.translate = '0 0';
+
+    const title = audioTitle.textContent;
+    console.log(`audio played: ${title}`);
+    window.umami.track('audio-played', {
+      slug: title,
+    });
   });
 
   audioPlayer.addEventListener('pause', () => {
     playButton.src = '/icons/play.svg';
     playButton.alt = 'Lecture';
+  });
+
+  audioPlayer.addEventListener('ended', () => {
+    const title = audioTitle.textContent;
+    console.log(`audio ended: ${title}`);
+    window.umami.track('audio-ended', {
+      slug: title,
+    });
   });
 
   playButton.addEventListener('click', () =>
