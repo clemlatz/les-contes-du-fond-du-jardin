@@ -127,8 +127,8 @@ function _buildRssItem(episode) {
     },
     'itunes:duration': episode.data.durationInSeconds,
   };
-  const cover_url = episode.data.cover
-    ? episode.data.cover
+  const cover_url = episode.data.episodeCover
+    ? `/episodes/${episode.data.episodeCover}`
     : podcastConfig.cover;
   item['itunes:image'] = {
     $: {

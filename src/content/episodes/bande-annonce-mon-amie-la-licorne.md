@@ -6,6 +6,7 @@ audioUrl: https://mp3.les-contes-du-fond-du-jardin.fr/mon-amie-la-licorne_bande-
 durationInSeconds: 136 # 2 minutes et 16 secondes
 sizeInBytes: 5446007
 coverImage: ../../assets/episodes/mon-amie-la-licorne_bande-annonce.png
+episodeCover: mon-amie-la-licorne_bande-annonce.png
 ---
 
 Le premier épisode des Contes du fond du jardin, «&nbsp;Mon amie la licorne&nbsp;», paraîtra le

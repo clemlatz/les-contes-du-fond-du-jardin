@@ -13,6 +13,7 @@ const episode = defineCollection({
       audioUrl: z.string().optional(),
       durationInSeconds: z.number(),
       sizeInBytes: z.number(),
+      episodeCover: z.string().optional(),
     }),
 });
 

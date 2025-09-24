@@ -6,6 +6,7 @@ audioUrl: https://mp3.les-contes-du-fond-du-jardin.fr/bande-annonce.mp3
 durationInSeconds: 201 # 3 minutes et 14 secondes
 sizeInBytes: 7771950
 coverImage: ../../assets/episodes/bande-annonce.png
+episodeCover: bande-annonce.png
 ---
 
 Découvrez un nouveau podcast d'histoires pour petits et grands, **Les Contes du fond du jardin**.

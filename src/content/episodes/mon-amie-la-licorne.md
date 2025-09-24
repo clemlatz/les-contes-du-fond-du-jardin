@@ -6,6 +6,7 @@ audioUrl: https://mp3.les-contes-du-fond-du-jardin.fr/mon-amie-la-licorne.mp3
 durationInSeconds: 952 # 15 minutes et 52 secondes
 sizeInBytes: 38105337
 coverImage: ../../assets/episodes/mon-amie-la-licorne_cover.png
+episodeCover: mon-amie-la-licorne_cover.png
 ---
 
 **Qui n’a jamais rêvé d’être ami avec une licorne ?**
